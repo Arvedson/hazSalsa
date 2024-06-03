@@ -1,14 +1,14 @@
-"use client";
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { ReactSVG } from 'react-svg';
-import styled, { keyframes } from 'styled-components';
 
 const slide = keyframes`
-  from {
-    transform: translateY(-300%);
+  0% {
+    transform: translateX(0);
   }
-  to {
-    transform: translateY(0%);
+  100% {
+    transform: translateX(-100%);
   }
 `;
 
@@ -20,22 +20,23 @@ const BackgroundContainer = styled.div`
 
 const AnimatedSVG = styled(ReactSVG)`
   position: absolute;
-  top: 0;
   left: 0;
-  width: 300%;
-  height: 100%; 
+  height: 100%;
   object-fit: cover;
   animation: ${slide} 300s infinite linear;
   margin-left: -350px;
- 
 `;
 
 const ChildrenWrapper = styled.div`
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 `;
 
-const Background = ({ children }) => {
+interface BackgroundProps {
+  children: ReactNode;
+}
+
+const Background = ({ children }: BackgroundProps) => {
   return (
     <BackgroundContainer>
       <AnimatedSVG src="/finalsvg.svg" />
@@ -47,6 +48,3 @@ const Background = ({ children }) => {
 };
 
 export default Background;
-
-
-
