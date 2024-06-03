@@ -1,14 +1,15 @@
+'use client';
+
 import React, { ReactNode } from 'react';
-import { keyframes } from 'styled-components';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ReactSVG } from 'react-svg';
 
 const slide = keyframes`
   0% {
-    transform: translateX(0);
+    transform: translateY(-100%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateY(0);
   }
 `;
 
@@ -16,11 +17,14 @@ const BackgroundContainer = styled.div`
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  
 `;
 
-const AnimatedSVG = styled(ReactSVG)`
+const AnimatedSVG = styled((props: any) => <ReactSVG {...props} />)`
   position: absolute;
+top:0;
   left: 0;
+  width: 300%;
   height: 100%;
   object-fit: cover;
   animation: ${slide} 300s infinite linear;
