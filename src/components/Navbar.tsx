@@ -1,5 +1,10 @@
+"use client"
 import React from 'react';
-import { useAuth } from '@clerk/clerk-react';
+import { useUser } from '@clerk/nextjs';
+
+
+
+
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { Burgermobile } from '@/components/Burgermobile';
 import { Button } from '@/components/ui/button';
@@ -7,7 +12,9 @@ import SignInSheet from '@/components/SignInSheet';
 import SignUpSheet from '@/components/SignUpSheet';
 
 function Navbar() {
-  const { isSignedIn, signOut } = useAuth();
+  const { user, signOut } = useUser();
+const isSignedIn = user !== null;
+
 
   return (
     <div className="bg-red-800 dark:bg-red-900 p-4 flex items-center justify-between">
